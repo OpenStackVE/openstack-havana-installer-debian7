@@ -176,7 +176,7 @@ echo "openstack-dashboard-apache horizon/use_ssl boolean false" >> /tmp/dashboar
 
 debconf-set-selections /tmp/dashboard-seed.txt
 
-aptitude -y install memcached openstack-dashboard openstack-dashboard-apache
+aptitude -y install memcached openstack-dashboard openstack-dashboard-apache python-argparse
 
 echo ""
 echo "Listo"

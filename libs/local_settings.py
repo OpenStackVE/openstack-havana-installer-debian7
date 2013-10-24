@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from openstack_dashboard import exceptions
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # Required for Django 1.5.
@@ -12,6 +12,7 @@ TEMPLATE_DEBUG = DEBUG
 # with the list of host/domain names that the application can serve.
 # For more information see:
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+#ALLOWED_HOSTS = ['horizon.example.com', ]
 ALLOWED_HOSTS = ['*']
 
 # Set SSL proxy settings:
@@ -77,6 +78,7 @@ HORIZON_CONFIG = {
 # Turn off browser autocompletion for the login form if so desired.
 # HORIZON_CONFIG["password_autocomplete"] = "off"
 
+LOCAL_PATH = os.path.dirname(os.path.abspath(__file__))
 
 # Set custom secret key:
 # You can either set it to a specific value or you can let horizion generate a
@@ -88,7 +90,7 @@ HORIZON_CONFIG = {
 # requests routed to the same dashboard instance or you set the same SECRET_KEY
 # for all of them.
 from horizon.utils import secret_key
-LOCAL_PATH = '/var/lib/openstack-dashboard'
+# SECRET_KEY = secret_key.generate_or_read_from_file(os.path.join("/","var","lib","openstack-dashboard","secret-key", '.secret_key_store'))
 SECRET_KEY = 'CUSTOM_DASHBOARD_SERVICE_TOKEN'
 
 # We recommend you use memcached for development; otherwise after every reload
@@ -101,11 +103,11 @@ SECRET_KEY = 'CUSTOM_DASHBOARD_SERVICE_TOKEN'
 #    }
 #}
 
-#CACHES = {
-#    'default': {
-#        'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache'
-#    }
-#}
+# CACHES = {
+#     'default': {
+#         'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache'
+#     }
+# }
 
 # Send email to the console by default
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -123,6 +125,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #     ('http://cluster1.example.com:5000/v2.0', 'cluster1'),
 #     ('http://cluster2.example.com:5000/v2.0', 'cluster2'),
 # ]
+
+# OPENSTACK_HOST = "127.0.0.1"
+# OPENSTACK_KEYSTONE_URL = "http://%s:5000/v2.0" % OPENSTACK_HOST
+# OPENSTACK_KEYSTONE_DEFAULT_ROLE = "Member"
 
 OPENSTACK_HOST = "CUSTOM_DASHBOARD_keystonehost"
 OPENSTACK_KEYSTONE_URL = "http://%s:5000/v2.0" % OPENSTACK_HOST
@@ -150,11 +156,7 @@ OPENSTACK_KEYSTONE_BACKEND = {
 }
 
 OPENSTACK_HYPERVISOR_FEATURES = {
-    'can_set_mount_point': False,
-
-    # NOTE: as of Grizzly this is not yet supported in Nova so enabling this
-    # setting will not do anything useful
-    'can_encrypt_volumes': False
+    'can_set_mount_point': True,
 }
 
 # The OPENSTACK_NEUTRON_NETWORK settings can be used to enable optional
@@ -210,6 +212,7 @@ API_RESULT_PAGE_SIZE = 20
 
 # The timezone of the server. This should correspond with the timezone
 # of your entire OpenStack installation, and hopefully be in UTC.
+# TIME_ZONE = "UTC"
 TIME_ZONE = "CUSTOM_DASHBOARD_dashboard_timezone"
 
 # When launching an instance, the menu of available flavors is
@@ -228,13 +231,12 @@ TIME_ZONE = "CUSTOM_DASHBOARD_dashboard_timezone"
 # target installation.
 
 # Path to directory containing policy.json files
-# POLICY_FILES_PATH = os.path.join(ROOT_PATH, "conf")
-POLICY_FILES_PATH = '/etc/openstack-dashboard'
+#POLICY_FILES_PATH = os.path.join(ROOT_PATH, "conf")
 # Map of local copy of service policy files
-POLICY_FILES = {
-    'identity': 'keystone_policy.json',
-    'compute': 'nova_policy.json'
-}
+#POLICY_FILES = {
+#    'identity': 'keystone_policy.json',
+#    'compute': 'nova_policy.json'
+#}
 
 # Trove user and database extension support. By default support for
 # creating users and databases on database instances is turned on.
@@ -449,6 +451,3 @@ SECURITY_GROUP_RULES = {
         'to_port': '3389',
     },
 }
-
-
-

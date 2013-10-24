@@ -194,6 +194,7 @@ rm -f /tmp/keystone-seed.txt
 echo "Configurando el Dashboard"
 
 mkdir -p /etc/openstack-dashboard
+cp /etc/openstack-dashboard/local_settings.py /etc/openstack-dashboard/local_settings.py.ORIGINAL
 cat ./libs/local_settings.py > /etc/openstack-dashboard/local_settings.py
 chmod 644 /etc/openstack-dashboard/local_settings.py
 

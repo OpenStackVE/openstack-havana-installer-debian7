@@ -1,6 +1,21 @@
 Pendientes:
 
-* PASAR A PRODUCCION/FULL-RELEASE el Instalador (aun está en Beta)
+* PASAR A PRODUCCION/FULL-RELEASE el Instalador (aun está en Beta).
+  Módulos verificados hasta ahora:
+  - Pre-requisitos
+  - Message Broker
+  - Base de Datos
+  - Pre-requisitos-extras
+  - Keystone
+  - Glance
+  - Cinder
+  - Quantum
+  - Nova (en progreso)
+  - Uninstall
+  Pendientes por verificar:
+  - Horizon
+  - Swift
+  - Ceilometer
 * Averiguar por que no se ven las métricas del Nova en el Panel de
   ceilometer del Dashboard (bug ??.. algo que omití ??).
 * Incluir HEAT.

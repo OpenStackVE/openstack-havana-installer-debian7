@@ -91,6 +91,10 @@ echo "glance-api glance/region-name string $endpointsregion" >> /tmp/glance-seed
 echo "glance-api glance/register-endpoint boolean false" >> /tmp/glance-seed.txt
 echo "glance-common glance/admin-user	string $keystoneadminuser" >> /tmp/glance-seed.txt
 echo "glance-common glance/configure_db boolean false" >> /tmp/glance-seed.txt
+# Nuevos para Havana
+echo "glance-common glance/rabbit_host string $messagebrokerhost" >> /tmp/glance-seed.txt
+echo "glance-common glance/rabbit_password password $brokerpass" >> /tmp/glance-seed.txt
+echo "glance-common glance/rabbit_userid string $brokeruser" >> /tmp/glance-seed.txt
 
 debconf-set-selections /tmp/glance-seed.txt
 
@@ -105,27 +109,43 @@ echo "cinder-api cinder/endpoint-ip string $cinderhost" >> /tmp/cinder-seed.txt
 echo "cinder-common cinder/volume_group string cinder-volumes" >> /tmp/cinder-seed.txt
 echo "cinder-api cinder/keystone-ip string $keystonehost" >> /tmp/cinder-seed.txt
 echo "cinder-common cinder/admin-user string $keystoneadminuser" >> /tmp/cinder-seed.txt
+# Nuevos para Havana
+echo "cinder-common cinder/rabbit_password password $brokerpass" >> /tmp/cinder-seed.txt
+echo "cinder-common cinder/rabbit_host string $messagebrokerhost" >> /tmp/cinder-seed.txt
+echo "cinder-common cinder/rabbit_userid string $brokeruser" >> /tmp/cinder-seed.txt
 
 debconf-set-selections /tmp/cinder-seed.txt
 
-echo "neutron-common quantum/admin-password password $keystoneadminpass" > /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-password password $keystoneadminpass" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/keystone-ip string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/local_ip string $quantumhost" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/configure_db boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/region-name string $endpointsregion" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/region-name string $endpointsregion" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/register-endpoint boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/tenant_network_type select vlan" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/admin-user string $keystoneadminuser" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-user string $keystoneadminuser" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/tunnel_id_ranges string 0" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/enable_tunneling boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/auth-host string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/auth-host string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/endpoint-ip string $quantumhost" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/admin-tenant-name string $keystoneadmintenant" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-tenant-name string $keystoneadmintenant" >> /tmp/quantum-seed.txt
+echo "neutron-common neutron/admin-password password $keystoneadminpass" > /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-password password $keystoneadminpass" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/keystone-ip string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/local_ip string $neutronhost" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/configure_db boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/region-name string $endpointsregion" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/region-name string $endpointsregion" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/register-endpoint boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/tenant_network_type select vlan" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/admin-user string $keystoneadminuser" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-user string $keystoneadminuser" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/tunnel_id_ranges string 0" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/enable_tunneling boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/auth-host string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/auth-host string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/endpoint-ip string $neutronhost" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/admin-tenant-name string $keystoneadmintenant" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-tenant-name string $keystoneadmintenant" >> /tmp/neutron-seed.txt
+echo "openswan openswan/install_x509_certificate boolean false" >> /tmp/neutron-seed.txt
+#
+# Nuevo para Havana
+echo "neutron-common neutron/rabbit_password password $brokerpass" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/rabbit_userid string $brokeruser" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/rabbit_host string $messagebrokerhost" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/tunnel_id_ranges string 1" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/tenant_network_type select vlan" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/enable_tunneling boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/configure_db boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/plugin-select select OpenVSwitch" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/local_ip string $neutronhost" >> /tmp/neutron-seed.txt
 
 debconf-set-selections /tmp/neutron-seed.txt
 
@@ -143,9 +163,13 @@ echo "nova-api nova/endpoint-ip string $novahost" >> /tmp/nova-seed.txt
 echo "nova-api nova/keystone-ip string $keystonehost" >> /tmp/nova-seed.txt
 echo "nova-common nova/active-api multiselect ec2, osapi_compute, metadata" >> /tmp/nova-seed.txt
 echo "nova-common nova/auth-host string $keystonehost" >> /tmp/nova-seed.txt
+#
+# Nuevo para Havana
+echo "nova-common nova/rabbit_host string $messagebrokerhost" >> /tmp/nova-seed.txt
+echo "nova-common nova/rabbit_password password $brokerpass" >> /tmp/nova-seed.txt
+echo "nova-common nova/rabbit_userid string $brokeruser" >> /tmp/nova-seed.txt
 
 debconf-set-selections /tmp/nova-seed.txt
-
 
 echo "openstack-dashboard-apache horizon/activate_vhost boolean false" > /tmp/dashboard-seed.txt
 echo "openstack-dashboard-apache horizon/use_ssl boolean false" >> /tmp/dashboard-seed.txt

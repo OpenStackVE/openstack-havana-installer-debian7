@@ -111,24 +111,24 @@ echo "cinder-common cinder/rabbit_userid string $brokeruser" >> /tmp/cinder-seed
 
 debconf-set-selections /tmp/cinder-seed.txt
 
-echo "neutron-common quantum/admin-password password $keystoneadminpass" > /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-password password $keystoneadminpass" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/keystone-ip string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/local_ip string $quantumhost" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/configure_db boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/region-name string $endpointsregion" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/region-name string $endpointsregion" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/register-endpoint boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/tenant_network_type select vlan" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/admin-user string $keystoneadminuser" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-user string $keystoneadminuser" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/tunnel_id_ranges string 0" >> /tmp/quantum-seed.txt
-echo "neutron-plugin-openvswitch quantum-plugin-openvswitch/enable_tunneling boolean false" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/auth-host string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/auth-host string $keystonehost" >> /tmp/quantum-seed.txt
-echo "neutron-server quantum/endpoint-ip string $quantumhost" >> /tmp/quantum-seed.txt
-echo "neutron-common quantum/admin-tenant-name string $keystoneadmintenant" >> /tmp/quantum-seed.txt
-echo "neutron-metadata-agent quantum/admin-tenant-name string $keystoneadmintenant" >> /tmp/quantum-seed.txt
+echo "neutron-common neutron/admin-password password $keystoneadminpass" > /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-password password $keystoneadminpass" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/keystone-ip string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/local_ip string $neutronhost" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/configure_db boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/region-name string $endpointsregion" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/region-name string $endpointsregion" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/register-endpoint boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/tenant_network_type select vlan" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/admin-user string $keystoneadminuser" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-user string $keystoneadminuser" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/tunnel_id_ranges string 0" >> /tmp/neutron-seed.txt
+echo "neutron-plugin-openvswitch neutron-plugin-openvswitch/enable_tunneling boolean false" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/auth-host string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/auth-host string $keystonehost" >> /tmp/neutron-seed.txt
+echo "neutron-server neutron/endpoint-ip string $neutronhost" >> /tmp/neutron-seed.txt
+echo "neutron-common neutron/admin-tenant-name string $keystoneadmintenant" >> /tmp/neutron-seed.txt
+echo "neutron-metadata-agent neutron/admin-tenant-name string $keystoneadmintenant" >> /tmp/neutron-seed.txt
 echo "openswan openswan/install_x509_certificate boolean false" >> /tmp/neutron-seed.txt
 #
 # Nuevo para Havana

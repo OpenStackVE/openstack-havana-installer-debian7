@@ -58,6 +58,7 @@ then
 			neutron-l3-agent
 			neutron-lbaas-agent
 			neutron-metadata-agent
+			neutron-vpn-agent
 			neutron-plugin-openvswitch-agent
 		'
 	else
@@ -67,7 +68,6 @@ then
 			neutron-l3-agent
 			neutron-lbaas-agent
 			neutron-metadata-agent
-			neutron-vpn-agent
 			neutron-plugin-openvswitch-agent
 		'
 	fi

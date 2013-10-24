@@ -10,9 +10,9 @@ Pendientes:
   - Glance
   - Cinder
   - Quantum
-  - Nova (en progreso)
+  - Nova
   - Uninstall
-  Pendientes por verificar:
+  Pendientes por verificar/aun no funcionales:
   - Horizon
   - Swift
   - Ceilometer

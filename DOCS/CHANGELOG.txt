@@ -1,0 +1,7 @@
+0.0.1 Devel - Versión Inicial - 24-Octubre-2013
+- Versión inicial de desarrollo con todos los settings
+  importados de las versiones de Grizzly para Debian 7
+  y Havana para Centos6.
+- En proceso de pruebas aun. Una vez lista y verificada,
+  será liberada como release 1.0.4 para unificarla con
+  la versión de Centos 6.

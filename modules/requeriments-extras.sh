@@ -34,7 +34,8 @@ echo ""
 echo "Instalando paquetes base de Python para manejo de Bases de Datos"
 echo ""
 aptitude -y install python-sqlalchemy python-sqlalchemy-ext \
-	python-psycopg2 python-mysqldb python-keystoneclient python-keystone
+	python-psycopg2 python-mysqldb python-keystoneclient python-keystone \
+	python-argparse
 
 initiallist='
 	python-keystoneclient

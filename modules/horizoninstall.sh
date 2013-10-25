@@ -176,7 +176,13 @@ echo "openstack-dashboard-apache horizon/use_ssl boolean false" >> /tmp/dashboar
 
 debconf-set-selections /tmp/dashboard-seed.txt
 
-aptitude -y install memcached openstack-dashboard openstack-dashboard-apache python-argparse
+aptitude -y install memcached \
+	openstack-dashboard \
+	openstack-dashboard-apache \
+	python-argparse \
+	python-django-discover-runner \
+	python-wsgi-intercept
+	
 
 echo ""
 echo "Listo"
@@ -222,6 +228,20 @@ echo "" >> /etc/openstack-dashboard/local_settings.py
 echo "SITE_BRANDING = '$brandingname'" >> /etc/openstack-dashboard/local_settings.py
 echo "" >> /etc/openstack-dashboard/local_settings.py
 
+#
+#
+# NOTA: Debido a un posible BUG en la implementación del backend de DB
+# Se colocará por defecto la variable en "no" y se usará Memcached
+#
+
+horizondbusage="no"
+
+echo ""
+echo "ALERTA !!. Backend de Base de Datos actualmente no soportado"
+echo "Posible BUG en la implementación de DEBIAN... se usará Memcached"
+echo "como backend de Cache".
+echo ""
+
 if [ $horizondbusage == "yes" ]
 then
 	echo "" >> /etc/openstack-dashboard/local_settings.py
@@ -233,7 +253,6 @@ then
         echo "" >> /etc/openstack-dashboard/local_settings.py
         case $dbflavor in
         "postgres")
-                # echo "SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'" >> /etc/openstack-dashboard/local_settings.py
                 echo "DATABASES = {" >> /etc/openstack-dashboard/local_settings.py
                 echo " 'default': {" >> /etc/openstack-dashboard/local_settings.py
                 echo " 'ENGINE': 'django.db.backends.postgresql_psycopg2'," >> /etc/openstack-dashboard/local_settings.py
@@ -246,7 +265,6 @@ then
                 echo "}" >> /etc/openstack-dashboard/local_settings.py
                 ;;
         "mysql")
-                # echo "SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'" >> /etc/openstack-dashboard/local_settings.py
                 echo "DATABASES = {" >> /etc/openstack-dashboard/local_settings.py
                 echo " 'default': {" >> /etc/openstack-dashboard/local_settings.py
                 echo " 'ENGINE': 'django.db.backends.mysql'," >> /etc/openstack-dashboard/local_settings.py

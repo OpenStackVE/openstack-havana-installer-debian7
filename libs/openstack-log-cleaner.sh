@@ -42,10 +42,11 @@ logdirs='
 	/var/log/swift
 	/var/log/glance
 	/var/log/cinder
-	/var/log/quantum
+	/var/log/neutron
 	/var/log/nova
 	/var/log/ceilometer
 	/var/log/horizon
+	/var/log/keystone
 '
 
 for logdirectory in $logdirs

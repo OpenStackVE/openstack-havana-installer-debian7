@@ -64,7 +64,8 @@ echo ""
 
 echo "Instalando y configurando backend de base de datos MongoDB"
 echo ""
-aptitude -y install mongodb mongodb-clients mongodb-dev mongodb-server
+# aptitude -y install mongodb mongodb-clients mongodb-dev mongodb-server
+dpkg -i libs/mongodb-10gen_2.2.6_amd64.deb
 
 /etc/init.d/mongodb restart
 chkconfig mongodb on
@@ -74,6 +75,9 @@ echo "ceilometer-api ceilometer/register-endpoint boolean false" > /tmp/ceilomet
 echo "ceilometer-api ceilometer/region-name string $endpointsregion" >> /tmp/ceilometer-seed.txt
 echo "ceilometer-api ceilometer/endpoint-ip string $ceilometerhost" >> /tmp/ceilometer-seed.txt
 echo "ceilometer-api ceilometer/keystone-ip string $keystonehost" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/rabbit_password password $brokerpass" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/rabbit_userid string $brokeruser" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/rabbit_host string $messagebrokerhost" >> /tmp/ceilometer-seed.txt
 
 debconf-set-selections /tmp/ceilometer-seed.txt
 

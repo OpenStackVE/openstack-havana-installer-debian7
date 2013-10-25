@@ -41,6 +41,7 @@ then
 	chkconfig mongodb off
 	killall -9 -u mongodb
 	aptitude -y purge mongodb mongodb-clients mongodb-dev mongodb-server
+	aptitude -y purge mongodb-10gen
 	userdel -f -r mongodb
 	rm -rf 	/var/lib/mongodb /var/log/mongodb
 fi

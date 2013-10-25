@@ -12,12 +12,10 @@ Pendientes:
   - Quantum
   - Nova
   - Uninstall
-  Pendientes por verificar/aun no funcionales:
-  - Horizon
   - Swift
-  - Ceilometer
-* Averiguar por que no se ven las métricas del Nova en el Panel de
-  ceilometer del Dashboard (bug ??.. algo que omití ??).
+  Pendientes por verificar/aun no funcionales/Features no completas:
+  - Horizon (no funciona aun el cache de base de datos)
+  - Ceilometer (no salen las estadísticas aun en el horizon)
 * Incluir HEAT.
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).
 * Revisar las métricas de swift (no parece que todas se estén mostrando

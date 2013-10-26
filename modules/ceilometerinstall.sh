@@ -86,7 +86,8 @@ echo "Instalando paquetes de Ceilometer"
 echo ""
 
 aptitude -y install ceilometer-agent-central ceilometer-agent-compute ceilometer-api \
-	ceilometer-collector ceilometer-common python-ceilometer python-ceilometerclient
+	ceilometer-collector ceilometer-common python-ceilometer python-ceilometerclient \
+	libnspr4 libnspr4-dev python-libxslt1
 
 echo "Listo"
 echo ""

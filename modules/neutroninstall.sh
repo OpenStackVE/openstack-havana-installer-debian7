@@ -264,7 +264,6 @@ openstack-config --set /etc/neutron/neutron.conf DEFAULT dhcp_lease_duration 120
 openstack-config --set /etc/neutron/neutron.conf DEFAULT allow_bulk True
 openstack-config --set /etc/neutron/neutron.conf DEFAULT allow_overlapping_ips False
 openstack-config --set /etc/neutron/neutron.conf DEFAULT control_exchange neutron
-openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_driver neutron.openstack.common.notifier.rpc_notifier
 openstack-config --set /etc/neutron/neutron.conf DEFAULT default_notification_level INFO
 openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_topics notifications
 openstack-config --set /etc/neutron/neutron.conf DEFAULT state_path /var/lib/neutron
@@ -289,6 +288,7 @@ case $brokerflavor in
         openstack-config --set /etc/neutron/neutron.conf DEFAULT qpid_reconnect_timeout 0
         openstack-config --set /etc/neutron/neutron.conf DEFAULT qpid_reconnect_limit 0
         openstack-config --set /etc/neutron/neutron.conf DEFAULT qpid_reconnect True
+	openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_driver neutron.openstack.common.notifier.rpc_notifier
         ;;
 
 "rabbitmq")
@@ -302,6 +302,7 @@ case $brokerflavor in
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_max_retries 0
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_retry_interval 1
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_ha_queues false
+	openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_driver neutron.openstack.common.notifier.rabbit_notifier
         ;;
 esac
 
@@ -386,9 +387,11 @@ openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini D
 case $dbflavor in
 "mysql")
         openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini DATABASE sql_connection mysql://$neutrondbuser:$neutrondbpass@$dbbackendhost:$mysqldbport/$neutrondbname
+        openstack-config --set /etc/neutron/neutron.conf database connection mysql://$neutrondbuser:$neutrondbpass@$dbbackendhost:$mysqldbport/$neutrondbname
         ;;
 "postgres")
         openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini DATABASE sql_connection postgresql://$neutrondbuser:$neutrondbpass@$dbbackendhost:$psqldbport/$neutrondbname
+        openstack-config --set /etc/neutron/neutron.conf database connection postgresql://$neutrondbuser:$neutrondbpass@$dbbackendhost:$psqldbport/$neutrondbname
         ;;
 esac
 

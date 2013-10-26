@@ -182,6 +182,25 @@ aptitude -y install memcached \
 	python-argparse \
 	python-django-discover-runner \
 	python-wsgi-intercept
+	python-pytools \
+	python-beaker \
+	python-django-websocket \
+	python-mod-pywebsocket \
+	python-libguestfs \
+	python-snappy \
+	libunwind7 \
+	google-perftools \
+	libgoogle-perftools4 \
+	python-sendfile \
+	tix \
+	nodejs \
+	nodejs-legacy \
+	pylint \
+	python-mox \
+	python-mox3 \
+	python-coverage \
+	python-cherrypy3 \
+	python-beautifulsoup
 	
 
 echo ""

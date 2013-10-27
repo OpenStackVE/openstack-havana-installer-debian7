@@ -178,7 +178,7 @@ openstack-config --set /etc/cinder/cinder.conf DEFAULT volume_driver cinder.volu
 openstack-config --set /etc/cinder/cinder.conf DEFAULT logdir /var/log/cinder
 openstack-config --set /etc/cinder/cinder.conf DEFAULT state_path /var/lib/cinder
 openstack-config --set /etc/cinder/cinder.conf DEFAULT lock_path /var/lib/cinder/tmp
-openstack-config --set /etc/cinder/cinder.conf DEFAULT volumes_dir /etc/cinder/volumes
+openstack-config --set /etc/cinder/cinder.conf DEFAULT volumes_dir /var/lib/cinder/volumes
 openstack-config --set /etc/cinder/cinder.conf DEFAULT rootwrap_config /etc/cinder/rootwrap.conf
 openstack-config --set /etc/cinder/cinder.conf DEFAULT iscsi_ip_address $cinder_iscsi_ip_address
 
@@ -208,7 +208,8 @@ then
                 openstack-config --set /etc/cinder/cinder.conf DEFAULT notification_driver cinder.openstack.common.notifier.rpc_notifier
                 ;;
         "rabbitmq")
-                openstack-config --set /etc/cinder/cinder.conf DEFAULT notification_driver cinder.openstack.common.notifier.rabbit_notifier
+		# Rabbit Notifier DEPRECADO!!!. Usar RPC
+                openstack-config --set /etc/cinder/cinder.conf DEFAULT notification_driver cinder.openstack.common.notifier.rpc_notifier
                 ;;
         esac
 fi

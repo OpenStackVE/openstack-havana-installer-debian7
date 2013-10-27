@@ -302,7 +302,7 @@ case $brokerflavor in
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_max_retries 0
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_retry_interval 1
         openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_ha_queues false
-	openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_driver neutron.openstack.common.notifier.rabbit_notifier
+	openstack-config --set /etc/neutron/neutron.conf DEFAULT notification_driver neutron.openstack.common.notifier.rpc_notifier
         ;;
 esac
 

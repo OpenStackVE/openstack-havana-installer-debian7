@@ -253,13 +253,13 @@ echo "" >> /etc/openstack-dashboard/local_settings.py
 # Se colocará por defecto la variable en "no" y se usará Memcached
 #
 
-horizondbusage="no"
+# horizondbusage="no"
 
-echo ""
-echo "ALERTA !!. Backend de Base de Datos actualmente no soportado"
-echo "Posible BUG en la implementación de DEBIAN... se usará Memcached"
-echo "como backend de Cache".
-echo ""
+# echo ""
+# echo "ALERTA !!. Backend de Base de Datos actualmente no soportado"
+# echo "Posible BUG en la implementación de DEBIAN... se usará Memcached"
+# echo "como backend de Cache".
+# echo ""
 
 if [ $horizondbusage == "yes" ]
 then
@@ -267,6 +267,7 @@ then
         echo "CACHES = {" >> /etc/openstack-dashboard/local_settings.py
         echo " 'default': {" >> /etc/openstack-dashboard/local_settings.py
         echo " 'BACKEND': 'django.core.cache.backends.db.DatabaseCache'," >> /etc/openstack-dashboard/local_settings.py
+        echo " 'LOCATION': 'openstack_db_cache'," >> /etc/openstack-dashboard/local_settings.py
         echo " }" >> /etc/openstack-dashboard/local_settings.py
         echo "}" >> /etc/openstack-dashboard/local_settings.py
         echo "" >> /etc/openstack-dashboard/local_settings.py
@@ -301,6 +302,8 @@ then
         /usr/share/openstack-dashboard/manage.py createsuperuser --username=root --email=root@localhost.tld --noinput
         mkdir -p /var/lib/dash/.blackhole
         /usr/share/openstack-dashboard/manage.py syncdb --noinput
+	/usr/share/openstack-dashboard/manage.py createcachetable openstack_db_cache
+	/usr/share/openstack-dashboard/manage.py inspectdb
 else
         echo "" >> /etc/openstack-dashboard/local_settings.py
         echo "CACHES = {" >> /etc/openstack-dashboard/local_settings.py

@@ -262,7 +262,8 @@ then
         	sed -r -i 's/ceilometer.compute.nova_notifier/ceilometer.compute.nova_notifier\nnotification_driver\ =\ nova.openstack.common.notifier.rpc_notifier/' /etc/nova/nova.conf
 		;;
 	"rabbitmq")
-        	sed -r -i 's/ceilometer.compute.nova_notifier/ceilometer.compute.nova_notifier\nnotification_driver\ =\ nova.openstack.common.notifier.rabbit_notifier/' /etc/nova/nova.conf
+		# Rabbit Notifier deprecado - usar RPC
+        	sed -r -i 's/ceilometer.compute.nova_notifier/ceilometer.compute.nova_notifier\nnotification_driver\ =\ nova.openstack.common.notifier.rpc_notifier/' /etc/nova/nova.conf
 		;;
 	esac
         openstack-config --set /etc/nova/nova.conf DEFAULT instance_usage_audit True

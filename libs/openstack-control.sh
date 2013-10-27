@@ -53,22 +53,22 @@ then
         if [ -f /etc/openstack-control-script-config/neutron-full-installed-vpnaas ]
         then
 		neutron_svc_start='
-			neutron-server
-			neutron-dhcp-agent
-			neutron-l3-agent
-			neutron-lbaas-agent
-			neutron-metadata-agent
-			neutron-vpn-agent
-			neutron-plugin-openvswitch-agent
+                        neutron-server
+                        neutron-plugin-openvswitch-agent
+                        neutron-l3-agent
+                        neutron-lbaas-agent
+                        neutron-metadata-agent
+                        neutron-dhcp-agent
+                        neutron-vpn-agent
 		'
 	else
 		neutron_svc_start='
-			neutron-server
-			neutron-dhcp-agent
-			neutron-l3-agent
-			neutron-lbaas-agent
-			neutron-metadata-agent
-			neutron-plugin-openvswitch-agent
+                        neutron-server
+                        neutron-plugin-openvswitch-agent
+                        neutron-l3-agent
+                        neutron-lbaas-agent
+                        neutron-metadata-agent
+                        neutron-dhcp-agent
 		'
 	fi
 else

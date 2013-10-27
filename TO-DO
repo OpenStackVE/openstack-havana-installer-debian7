@@ -13,8 +13,8 @@ Pendientes:
   - Nova
   - Uninstall
   - Swift
+  - Horizon
   Pendientes por verificar/aun no funcionales/Features no completas:
-  - Horizon (no funciona aun el cache de base de datos)
   - Ceilometer (no salen las estadísticas aun en el horizon)
 * Incluir HEAT.
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).

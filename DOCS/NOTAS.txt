@@ -36,15 +36,15 @@ Debe tener las ramas "main contrib non-free" activas en los repositorios princip
 
 Ejemplo de un sources.list bien configurado para debian 7
 
-deb http://debian.cantv.net/debian/ wheezy main contrib non-free
-deb-src http://debian.cantv.net/debian/ wheezy main contrib non-free
+deb http://ftp.us.debian.org/debian/ wheezy main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ wheezy main contrib non-free
 
 deb http://security.debian.org/ wheezy/updates main contrib non-free
 deb-src http://security.debian.org/ wheezy/updates main contrib non-free
 
 # wheezy-updates, previously known as 'volatile'
-deb http://debian.cantv.net/debian/ wheezy-updates main contrib non-free
-deb-src http://debian.cantv.net/debian/ wheezy-updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
 
 deb http://archive.gplhost.com/debian havana main
 deb http://archive.gplhost.com/debian havana-backports main

@@ -340,6 +340,10 @@ fi
 openstack-config --set /etc/neutron/neutron.conf fwaas driver "neutron.services.firewall.drivers.linux.iptables_fwaas.IptablesFwaasDriver"
 openstack-config --set /etc/neutron/neutron.conf fwaas enabled True
 
+# Esto solo para Debian7
+openstack-config --set /etc/neutron/fwaas_driver.ini fwaas driver "neutron.services.firewall.drivers.linux.iptables_fwaas.IptablesFwaasDriver"
+openstack-config --set /etc/neutron/fwaas_driver.ini fwaas enabled True
+
 # NUEVO: VPN As A Service
 
 if [ $vpnaasinstall == "yes" ]
@@ -411,10 +415,9 @@ openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini o
 openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs enable_tunneling False
 openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs network_vlan_ranges $network_vlan_ranges
 openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs tenant_network_type vlan
-
 openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini agent polling_interval 2
-
 openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs local_ip $neutronhost
 
 openstack-config --del /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs tunnel_id_ranges
 

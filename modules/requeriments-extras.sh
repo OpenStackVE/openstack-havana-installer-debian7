@@ -37,6 +37,55 @@ aptitude -y install python-sqlalchemy python-sqlalchemy-ext \
 	python-psycopg2 python-mysqldb python-keystoneclient python-keystone \
 	python-argparse
 
+aptitude -y install python-py \
+	python-configparser \
+	dh-python \
+	python-flask \
+	pypy-simplejson \
+	subunit \
+	libcppunit-subunit0 \
+	libsubunit0 \
+	python-tox \
+	node-uglify \
+	python-waitress \
+	python-webtest \
+	pep8 \
+	pyflakes \
+	python-bson \
+	python-gridfs \
+	python-pybabel \
+	python-colorama
+
+aptitude -y install python-flake8 \
+	python-psutil \
+	python-pyftpdlib \
+	python-selenium \
+	python-spidermonkey \
+	python-testscenarios \
+	python-thrift \
+	cliff-tablib \
+	python-factory-boy \
+	python-ftp-cloudfs \
+	python-oslo.sphinx \
+	python-openstack.nose-plugin \
+	python-sphinxcontrib-httpdomain \
+	python-sphinxcontrib-pecanwsme
+
+aptitude -y install python-couleur \
+	python-ddt \
+	python-falcon \
+	python-hacking \
+	python-happybase \
+	python-httpretty \
+	python-jsonpath-rw \
+	python-mockito \
+	python-nosehtmloutput \
+	python-proboscis \
+	python-pycadf \
+	python-pyghmi \
+	python-pystache \
+	python-sockjs-tornado
+
 initiallist='
 	python-keystoneclient
 	python-sqlalchemy

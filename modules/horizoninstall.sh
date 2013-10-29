@@ -181,7 +181,7 @@ aptitude -y install memcached \
 	openstack-dashboard-apache \
 	python-argparse \
 	python-django-discover-runner \
-	python-wsgi-intercept
+	python-wsgi-intercept \
 	python-pytools \
 	python-beaker \
 	python-django-websocket \
@@ -197,7 +197,6 @@ aptitude -y install memcached \
 	nodejs-legacy \
 	pylint \
 	python-mox \
-	python-mox3 \
 	python-coverage \
 	python-cherrypy3 \
 	python-beautifulsoup

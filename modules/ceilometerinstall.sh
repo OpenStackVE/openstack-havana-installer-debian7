@@ -65,6 +65,7 @@ echo ""
 echo "Instalando y configurando backend de base de datos MongoDB"
 echo ""
 aptitude -y install mongodb mongodb-clients mongodb-dev mongodb-server
+aptitude -y install libspnappy1 libgoogle-perftools4
 dpkg -i libs/mongodb/*.deb
 
 /etc/init.d/mongodb restart

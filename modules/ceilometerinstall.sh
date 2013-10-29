@@ -64,8 +64,7 @@ echo ""
 
 echo "Instalando y configurando backend de base de datos MongoDB"
 echo ""
-# aptitude -y install mongodb mongodb-clients mongodb-dev mongodb-server
-# dpkg -i libs/mongodb-10gen_2.4.7_amd64.deb
+aptitude -y install mongodb mongodb-clients mongodb-dev mongodb-server
 dpkg -i libs/mongodb/*.deb
 
 /etc/init.d/mongodb restart

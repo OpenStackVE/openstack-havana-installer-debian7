@@ -110,6 +110,10 @@ echo "cinder-common cinder/rabbit_userid string $brokeruser" >> /tmp/cinder-seed
 
 debconf-set-selections /tmp/cinder-seed.txt
 
+aptitude -y install libzookeeper-mt2 libcfg4 libcpg4
+
+dpkg -i libs/sheepdog/*.deb
+
 aptitude -y install cinder-api cinder-common cinder-scheduler cinder-volume python-cinderclient tgt open-iscsi
 
 sed -r -i 's/CINDER_ENABLE\=false/CINDER_ENABLE\=true/' /etc/default/cinder-common

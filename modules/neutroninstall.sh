@@ -322,6 +322,7 @@ openstack-config --set /etc/neutron/neutron.conf DEFAULT loadbalancer_pool_sched
 openstack-config --set /etc/neutron/neutron.conf DEFAULT network_auto_schedule True
 openstack-config --set /etc/neutron/neutron.conf DEFAULT router_auto_schedule True
 openstack-config --set /etc/neutron/neutron.conf DEFAULT dhcp_agents_per_network 2
+openstack-config --set /etc/neutron/neutron.conf DEFAULT hcp_agent_notification True
 
 # Nuevo token de configuracion para el LBaaS
 # Sin embargo, parece no funcionar - se deja comentado hasta que funcione bien

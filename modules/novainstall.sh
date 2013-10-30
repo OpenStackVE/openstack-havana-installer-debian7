@@ -282,7 +282,8 @@ openstack-config --set /etc/nova/nova.conf DEFAULT force_dhcp_release True
 openstack-config --set /etc/nova/nova.conf DEFAULT injected_network_template /usr/share/nova/interfaces.template
 openstack-config --set /etc/nova/nova.conf DEFAULT libvirt_nonblocking True
 openstack-config --set /etc/nova/nova.conf DEFAULT libvirt_inject_partition -1
-openstack-config --set /etc/nova/nova.conf DEFAULT network_manager nova.network.manager.FlatDHCPManager
+# Revisar !!
+# openstack-config --set /etc/nova/nova.conf DEFAULT network_manager nova.network.manager.FlatDHCPManager
 openstack-config --set /etc/nova/nova.conf DEFAULT iscsi_helper tgtadm
 
 #

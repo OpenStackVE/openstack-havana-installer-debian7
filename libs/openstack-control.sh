@@ -179,6 +179,12 @@ start)
 			service $i start
 			#sleep 1
 		done
+		if [ -f /etc/openstack-control-script-config/neutron-full-installed ]
+		then
+			sleep 2
+			service neutron-l3-agent restart
+			service neutron-dhcp-agent restart
+		fi
 	fi
 
 	if [ -f /etc/openstack-control-script-config/nova ]
@@ -592,6 +598,12 @@ restart)
 			service $i start
 			#sleep 1
 		done
+                if [ -f /etc/openstack-control-script-config/neutron-full-installed ]
+                then
+                        sleep 2
+                        service neutron-l3-agent restart
+                        service neutron-dhcp-agent restart
+                fi
 	fi
 
 	if [ -f /etc/openstack-control-script-config/nova ]

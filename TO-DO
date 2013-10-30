@@ -1,6 +1,6 @@
 Pendientes:
 
-* PASAR A PRODUCCION/FULL-RELEASE el Instalador (aun está en Beta).
+* PASAR A PRODUCCION/FULL-RELEASE el Instalador (aun está en RC).
   Módulos verificados hasta ahora:
   - Pre-requisitos
   - Message Broker
@@ -13,10 +13,11 @@ Pendientes:
   - Nova
   - Uninstall
   - Swift
-  - Horizon
+  - Horizon (menos el TAB de ceilometer)
   Pendientes por verificar/aun no funcionales/Features no completas:
-  - Ceilometer (no salen las estadísticas aun en el horizon)
-  - NOVA/NEUTRON ?? - Las VM's no logran tomar una IP del dhcp_agent (dnsmasq)
+  - El tab de ceilometer en horizon nunca muestra las estadísticas. No
+    sabemos aun si nos falta una librería por instalar o es un bug del
+    horizon !. Pendiente por investigación y mas pruebas.
 * Incluir HEAT.
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).
 * Revisar las métricas de swift (no parece que todas se estén mostrando

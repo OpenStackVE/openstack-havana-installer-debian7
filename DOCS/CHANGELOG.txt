@@ -1,3 +1,16 @@
+1.0.0.RC1 - Primer Release Candidate - 30-Octubre-2013
+
+- Correciones múltiples, y especialmente la de DNSMASQ
+  que estaba previniendo el correcto funcionamiento y
+  entrega de direcciones IP's a las VM's.
+- Se incluyen (importados desde SID) las librerías ne-
+  cesarias para instalar "sheepdog" en el módulo de
+  cinder
+- Se incluyen los paquetes actualizados de MongoDB para
+  que ceilometer funcione.
+- Queda pendiente verificar por que aun el TAB de hori-
+  zon no puede mostrar las estadísticas del ceilometer.
+
 0.0.1 Devel - Versión Inicial - 24-Octubre-2013
 - Versión inicial de desarrollo con todos los settings
   importados de las versiones de Grizzly para Debian 7

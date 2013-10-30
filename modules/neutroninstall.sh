@@ -215,6 +215,8 @@ then
 	sleep 5
 	cat /etc/dnsmasq.conf > $dnsmasq_config_file
 	mkdir -p /etc/dnsmasq-neutron.d
+	echo "user=neutron" >> $dnsmasq_config_file
+	echo "group=neutron" >> $dnsmasq_config_file
 	echo "conf-dir=/etc/dnsmasq-neutron.d" >> $dnsmasq_config_file
 	echo "# Extra options for Neutron-DNSMASQ" > /etc/dnsmasq-neutron.d/neutron-dnsmasq-extra.conf
 	echo "# Samples:" >> /etc/dnsmasq-neutron.d/neutron-dnsmasq-extra.conf

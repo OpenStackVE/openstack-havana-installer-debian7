@@ -1,3 +1,15 @@
+1.0.0.RC2 - Segundo Release Cantidate - 30-Octubre-2013
+
+- Se agregan otras librerías faltantes al módulo de re-
+  querimientos extras.
+- NOTA: Hasta donde he logrado confirmar, todo indica
+  que hay un BUG con el panel de ceilometer que podría
+  estar relacionado con las funciones del módulo de
+  python "python-wsme". Las versiones de dicho módulo
+  son distintas entre la implementación de centos y la
+  de debian.. y la de centos funciona correctamente.
+
+
 1.0.0.RC1 - Primer Release Candidate - 30-Octubre-2013
 
 - Correciones múltiples, y especialmente la de DNSMASQ
@@ -10,6 +22,7 @@
   que ceilometer funcione.
 - Queda pendiente verificar por que aun el TAB de hori-
   zon no puede mostrar las estadísticas del ceilometer.
+
 
 0.0.1 Devel - Versión Inicial - 24-Octubre-2013
 - Versión inicial de desarrollo con todos los settings

@@ -86,6 +86,23 @@ aptitude -y install python-couleur \
 	python-pystache \
 	python-sockjs-tornado
 
+aptitude -y install python-imaging \
+	python-imaging \
+	msgpack-python \
+	python-jinja2 \
+	python-simplegeneric \
+	python-docutils \
+	python-bson \
+	python-bson-ext \
+	python-pymongo \
+	python-flask \
+	python-werkzeug \
+	python-webtest \
+	python-pecan \
+	python-sphinx \
+	python-wsme
+
+
 initiallist='
 	python-keystoneclient
 	python-sqlalchemy

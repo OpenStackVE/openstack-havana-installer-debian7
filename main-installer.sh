@@ -8,7 +8,7 @@
 # Primera versión (Havana - Debian7): Octubre 30 del 2013
 #
 # Script principal
-# Versión 1.0.0.RC1 "Mr. Cat"
+# Versión 1.0.0.RC2 "Mr. Cat"
 # 30 de Octubre del 2013
 #
 
@@ -40,7 +40,7 @@ case $1 in
 	echo "INSTALADOR DE OPENSTACK HAVANA PARA DEBIAN 7"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.0.0.RC1 \"Mr. Cat\" - Octubre 30, 2013"
+	echo "Versión 1.0.0.RC2 \"Mr. Cat\" - Octubre 30, 2013"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"

@@ -9,9 +9,19 @@ Este instalador fue realizado para automatizar las tareas de creación de una
 infraestructura de virtualización basada en OpenStack. Hasta el momento,
 existen dos "sabores" del instalador, uno para Debian 7 y otra para Centos 6.
 
-Ambos *sabores* producen esencialmente lo mismo: Un OpenStack completamente
-utilizable para producción.
+El de Centos 6 está ya publicado como "ESTABLE", sin embargo, el de debian 7
+aun permanece en desarrollo y sólo será publicado en GitHub sin número de "re-
+lease" hasta que las cosas que aun no funcionan (y son varias y muy críticas)
+logren funcionar de manera adecuada !.
 
+Por lo pronto, recomendamos usar la versión de este instalador para CENTOS6 y
+estar atendo al primer release de producción de la versión de Debian 7 "cuando
+eso ocurra" (por lo pronto está fuera de nuestro control).
+
+En resumen, el sabor para Centos 6 produce un OpenStack Havana completamente
+utilizable en ambientes de producción, pero aun así recomendamos seguir usando
+las versiones para grizzly (centos6/debian7) hasta que Havana madure lo sufi-
+ciente !.
 
 ## Uso del Instalador.
 

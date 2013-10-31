@@ -1,3 +1,15 @@
+1.0.1 - Primer release para producción - 31-Octubre-2013
+
+- Se cambian las notas para reflejar el repositorio de
+  paquetes "http://havana.pkgs.enovance.com" el cual
+  mantiene paquetes mas actualizados que los de gplhost.
+- Se logra resolver el problema con python-wsme mediante
+  una secuencia de "downgrade" a 0.5b5 lo cual resulta
+  en el panel de ceilometer ya funcional !. Esto con-
+  firma que el problema siempre fue con wsme 0.5b6.
+- Se agregan secuencias extras de preseed para el pa-
+  quete de ceilometer que viene en el nuevo repo.
+
 1.0.0.RC2 - Segundo Release Cantidate - 30-Octubre-2013
 
 - Se agregan otras librerías faltantes al módulo de re-

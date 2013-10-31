@@ -1,0 +1,7 @@
+ALERTA ALERTA ALERTA !!
+
+El paquete python-wsme que viene con debian 7 (wsme 0.5b6) está ROTO !!!. La librería presenta problemas que afectan el TAB del dashboard (horizon) y no permiten la correcta presentación de la data !!.
+
+Para resolver esto mientras Debian actualiza el paquete, en el módulo de instalación de Ceilometer se ejecuta una instrucción "pip" que hace "downgrade" a la versión de wsme 0.5b5 !.
+
+Por favor tome esto en cuenta si usa ceilometer y trata de actualizar la librería a 0.5b6 !!!.

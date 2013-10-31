@@ -1,23 +1,5 @@
 Pendientes:
 
-* PASAR A PRODUCCION/FULL-RELEASE el Instalador (aun está en RC).
-  Módulos verificados hasta ahora:
-  - Pre-requisitos
-  - Message Broker
-  - Base de Datos
-  - Pre-requisitos-extras
-  - Keystone
-  - Glance
-  - Cinder
-  - Quantum
-  - Nova
-  - Uninstall
-  - Swift
-  - Horizon (menos el TAB de ceilometer)
-  Pendientes por verificar/aun no funcionales/Features no completas:
-  - El tab de ceilometer en horizon nunca muestra las estadísticas. No
-    sabemos aun si nos falta una librería por instalar o es un bug del
-    horizon !. Pendiente por investigación y mas pruebas.
 * Incluir HEAT.
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).
 * Revisar las métricas de swift (no parece que todas se estén mostrando

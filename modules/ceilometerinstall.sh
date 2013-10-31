@@ -79,6 +79,10 @@ echo "ceilometer-api ceilometer/keystone-ip string $keystonehost" >> /tmp/ceilom
 echo "ceilometer-common ceilometer/rabbit_password password $brokerpass" >> /tmp/ceilometer-seed.txt
 echo "ceilometer-common ceilometer/rabbit_userid string $brokeruser" >> /tmp/ceilometer-seed.txt
 echo "ceilometer-common ceilometer/rabbit_host string $messagebrokerhost" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/admin-password password $keystoneadminpass" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/admin-user string $keystoneadminuser" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/auth-host string $keystonehost" >> /tmp/ceilometer-seed.txt
+echo "ceilometer-common ceilometer/admin-tenant-name string $keystoneadmintenant" >> /tmp/ceilometer-seed.txt
 
 debconf-set-selections /tmp/ceilometer-seed.txt
 
@@ -89,6 +93,15 @@ echo ""
 aptitude -y install ceilometer-agent-central ceilometer-agent-compute ceilometer-api \
 	ceilometer-collector ceilometer-common python-ceilometer python-ceilometerclient \
 	libnspr4 libnspr4-dev python-libxslt1
+
+#
+# Downgrade de WSME para que funcione
+#
+echo ""
+echo "Aplicando DOWNGRADE de librería WSME a 0.5b5 (la 0.5b6 da problemas con ceilometer)"
+echo ""
+pip install WSME==0.5b5
+echo ""
 
 echo "Listo"
 echo ""

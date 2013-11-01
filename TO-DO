@@ -1,6 +1,5 @@
 Pendientes:
 
-* Incluir HEAT.
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).
 * Revisar las métricas de swift (no parece que todas se estén mostrando
   adecuadamente... de nuevo: bug ??.. algo que omití ??).

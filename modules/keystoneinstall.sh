@@ -312,6 +312,11 @@ then
         ./modules/keystone-ceilometer.sh
 fi
 
+if [ $heatinstall == "yes" ]
+then
+	./modules/keystone-heat.sh
+fi
+
 ./modules/keystone-extratenants.sh
 
 date > /etc/openstack-control-script-config/keystone-extra-idents

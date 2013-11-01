@@ -402,7 +402,7 @@ heatpass="P@ssw0rd"
 heatemail="heat@localhost"
 heatcfnsvce="heat-cfn"
 # Solo para la base de datos:
-# Si se van a tener varios hosts de nova, colocar aquí las IP's
+# Si se van a tener varios hosts de heat, colocar aquí las IP's
 # para el acceso de la base de datos - sólo efectivo cuando el backend
 # es MySQL
 extraheathosts=""

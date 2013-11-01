@@ -99,7 +99,8 @@ aptitude -y purge virt-top ceilometer-agent-central ceilometer-agent-compute cei
 	python-keystone python-keystoneclient python-psycopg2 python-sqlalchemy python-sqlalchemy-ext \
 	python-psycopg2 python-mysqldb dnsmasq dnsmasq-utils qpidd libqpidbroker2 libqpidclient2 \
 	libqpidcommon2 libqpidtypes1 python-cqpid python-qpid python-qpid-extras-qmf qpid-client \
-	qpid-tools qpid-doc qemu kvm qemu-kvm libvirt-bin libvirt-doc rabbitmq-server
+	qpid-tools qpid-doc qemu kvm qemu-kvm libvirt-bin libvirt-doc rabbitmq-server \
+	heat-api heat-api-cfn heat-engine
 
 apt-get -y autoremove
 
@@ -124,6 +125,7 @@ userdel -f -r nova
 userdel -f -r ceilometer
 userdel -f -r swift
 userdel -r -f rabbitmq
+userdel -r -f heat
 
 echo "Eliminando Archivos remanentes"
 
@@ -147,9 +149,12 @@ rm -fr  /etc/qpid \
 	/etc/tgt \
 	/etc/neutron \
 	/var/lib/neutron \
+	/var/lib/heat \
 	/var/log/neutron \
+	/var/log/heat \
 	/etc/sudoers.d/neutron \
 	/etc/nova \
+	/etc/heat \
 	/var/log/nova \
 	/var/lib/nova \
 	/etc/sudoers.d/nova \

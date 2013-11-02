@@ -163,6 +163,27 @@ echo "nova-common nova/rabbit_userid string $brokeruser" >> /tmp/nova-seed.txt
 
 debconf-set-selections /tmp/nova-seed.txt
 
+#
+# Debconf para HEAT - NOTA: Se hace la config inicial con la BD de sqlite
+# para no tener problemas con el Postinstall del paquete. Luego se cambia a la
+# base de datos correcta y se hace el "db_sync"
+#
+
+echo "heat-common heat-common/internal/skip-preseed boolean true" > /tmp/heat-seed.txt
+echo "heat-common heat/rabbit_password password $brokerpass" >> /tmp/heat-seed.txt
+echo "heat-common heat/rabbit_userid string $brokeruser" >> /tmp/heat-seed.txt
+echo "heat-common heat/admin-password password $heatpass" >> /tmp/heat-seed.txt
+echo "heat-common heat/rabbit_userid string openstack" >> /tmp/heat-seed.txt
+echo "heat-common heat-common/dbconfig-upgrade boolean true" >> /tmp/heat-seed.txt
+echo "heat-common heat/auth-host string $keystonehost" >> /tmp/heat-seed.txt
+echo "heat-common heat/configure_db boolean true" >> /tmp/heat-seed.txt
+echo "heat-common heat/rabbit_host string $messagebrokerhost" >> /tmp/heat-seed.txt
+echo "heat-common heat-common/dbconfig-install boolean true" >> /tmp/heat-seed.txt
+echo "heat-common heat-common/upgrade-backup boolean true" >> /tmp/heat-seed.txt
+echo "heat-common heat-common/database-type select sqlite3" >> /tmp/heat-seed.txt
+echo "heat-common heat-common/dbconfig-reinstall boolean false" >> /tmp/heat-seed.txt
+
+debconf-set-selections /tmp/heat-seed.txt
 
 echo ""
 echo "Instalando paquetes para Heat"
@@ -172,11 +193,21 @@ aptitude -y install heat-api heat-api-cfn heat-engine
 echo "Listo"
 echo ""
 
+rm -f /tmp/*.seed.txt
+
 source $keystone_admin_rc_file
 
 echo ""
 echo "Configurando Heat"
 echo ""
+
+/etc/init.d/heat-api stop
+/etc/init.d/heat-api-cfn stop
+/etc/init.d/heat-engine stop
+
+mkdir -p /etc/heat/environment.d
+
+chown -R heat.hear /etc/heat/environment.d
 
 # Temporal - aparentemente el paquete no instala el api-paste.ini
 

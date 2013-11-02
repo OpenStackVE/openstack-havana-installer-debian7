@@ -1,3 +1,12 @@
+1.1.0 - 02-Noviembre-2013
+- Se agrega el módulo de instalación de heat como op-
+  cional (por defecto en "no").
+- NOTA: Como esto es un feature mayor, se cambian los
+  números de versión a la serie 1.1.x.
+- Se hacen cambios de preseed en desinstalador para
+  cubrir cambios instroducidos por la inclusión del
+  módulo de instalación de Heat.
+
 1.0.1 - Primer release para producción - 31-Octubre-2013
 
 - Se cambian las notas para reflejar el repositorio de

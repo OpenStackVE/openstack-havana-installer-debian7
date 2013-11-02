@@ -86,6 +86,11 @@ echo ""
 echo "Purgando paquetes"
 echo ""
 
+rm -f /etc/dbconfig-common/heat-common.conf
+
+echo "heat-common heat-common/dbconfig-remove boolean false" > /tmp/heat-seed.txt
+debconf-set-selections /tmp/heat-seed.txt
+
 aptitude -y purge virt-top ceilometer-agent-central ceilometer-agent-compute ceilometer-api \
 	ceilometer-collector ceilometer-common python-ceilometer python-ceilometerclient nova-api \
 	nova-cert nova-common nova-compute nova-conductor nova-console nova-consoleauth \
@@ -104,6 +109,7 @@ aptitude -y purge virt-top ceilometer-agent-central ceilometer-agent-compute cei
 
 apt-get -y autoremove
 
+rm -f /tmp/heat-seed.txt
 
 if [ $cleanundeviceatuninstall == "yes" ]
 then

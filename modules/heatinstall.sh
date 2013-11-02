@@ -182,6 +182,7 @@ echo "heat-common heat-common/dbconfig-install boolean true" >> /tmp/heat-seed.t
 echo "heat-common heat-common/upgrade-backup boolean true" >> /tmp/heat-seed.txt
 echo "heat-common heat-common/database-type select sqlite3" >> /tmp/heat-seed.txt
 echo "heat-common heat-common/dbconfig-reinstall boolean false" >> /tmp/heat-seed.txt
+echo "heat-common heat/register-endpoint boolean false" >> /tmp/heat-seed.txt
 
 debconf-set-selections /tmp/heat-seed.txt
 
@@ -189,6 +190,7 @@ echo ""
 echo "Instalando paquetes para Heat"
 
 aptitude -y install heat-api heat-api-cfn heat-engine
+aptitude -y install heat-cfntools
 
 echo "Listo"
 echo ""
@@ -207,11 +209,13 @@ echo ""
 
 mkdir -p /etc/heat/environment.d
 
-chown -R heat.hear /etc/heat/environment.d
-
 # Temporal - aparentemente el paquete no instala el api-paste.ini
 
-echo "# Heat api-paste.ini" >> /etc/heat/api-paste.ini 
+# echo "# Heat api-paste.ini" >> /etc/heat/api-paste.ini
+
+cat libs/heat/api-paste.ini >> /etc/heat/api-paste.ini
+
+chown -R heat.heat /etc/heat
 
 openstack-config --set /etc/heat/api-paste.ini "filter:authtoken" paste.filter_factory "heat.common.auth_token:filter_factory"
 openstack-config --set /etc/heat/api-paste.ini "filter:authtoken" auth_host $keystonehost
@@ -283,7 +287,8 @@ echo ""
 echo ""
 echo "Aprovisionando/inicializando BD de HEAT"
 echo ""
-heat-manage db_sync
+chown -R heat.heat /var/log/heat
+su - heat -c "heat-manage db_sync"
 
 echo ""
 echo "Listo"

@@ -206,6 +206,10 @@ else
 	then
 		/etc/init.d/neutron-vpn-agent stop
 	fi
+	if [ $neutronmetering == "yes" ]
+	then
+		/etc/init.d/neutron-metering-agent stop
+	fi
 fi
 
 echo "Listo"

@@ -116,6 +116,12 @@ echo ""
 /etc/init.d/ceilometer-api stop
 /etc/init.d/ceilometer-collector stop
 
+if [ $ceilometeralarms == "yes" ]
+then
+	/etc/init.d/ceilometer-alarm-evaluator stop
+	/etc/init.d/ceilometer-alarm-notifier stop
+fi
+
 source $keystone_admin_rc_file
 
 rm /tmp/ceilometer-seed.txt

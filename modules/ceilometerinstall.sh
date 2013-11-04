@@ -94,6 +94,11 @@ aptitude -y install ceilometer-agent-central ceilometer-agent-compute ceilometer
 	ceilometer-collector ceilometer-common python-ceilometer python-ceilometerclient \
 	libnspr4 libnspr4-dev python-libxslt1
 
+if [ $ceilometeralarms == "yes" ]
+then
+	aptitude -y install ceilometer-alarm-evaluator ceilometer-alarm-notifier
+fi
+
 #
 # Downgrade de WSME para que funcione
 #
@@ -242,20 +247,14 @@ chkconfig ceilometer-api on
 /etc/init.d/ceilometer-collector start
 chkconfig ceilometer-collector on
 
-echo "Dormiré por 10 segundos y reiniciaré el servicio de collector de datos"
-sync
-sleep 10
-sync
+if [ $ceilometeralarms == "yes" ]
+then
+	/etc/init.d/ceilometer-alarm-notifier start
+	chkconfig ceilometer-alarm-notifier on
 
-# Nota: Esto no es paranoia... a veces la primera vez que arranca el collector,
-# el servicio se cae. Por si acaso, lo bajamos, esperamos 5 segundos, y lo subimos
-# de nuevo
-
-service ceilometer-collector stop
-sync
-sleep 5
-sync
-service ceilometer-collector start
+	/etc/init.d/ceilometer-alarm-evaluator start
+	chkconfig ceilometer-alarm-evaluator on
+fi
 
 testceilometer=`dpkg -l ceilometer-api 2>/dev/null|tail -n 1|grep -ci ^ii`
 if [ $testceilometer == "0" ]
@@ -267,6 +266,10 @@ then
 else
 	date > /etc/openstack-control-script-config/ceilometer-installed
 	date > /etc/openstack-control-script-config/ceilometer
+	if [ $ceilometeralarms == "yes" ]
+	then
+		date > /etc/openstack-control-script-config/ceilometer-installed-alarms
+	fi
 fi
 
 echo ""

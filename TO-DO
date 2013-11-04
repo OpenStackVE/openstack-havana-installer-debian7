@@ -3,5 +3,4 @@ Pendientes:
 * Incluir NAGIOS (vale la pena ??.. que dice la comunidad ??).
 * Considerar a futuro incluir un portal de automonitoreo vía MRTG con
   autenticación http (htpasswd).
-* Incluir el bandwidth meetering de ceilometer (opcional).
 * Incluir la opción de colocar todos los servicios sobre SSL.

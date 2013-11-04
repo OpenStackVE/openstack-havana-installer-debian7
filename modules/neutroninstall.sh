@@ -172,6 +172,11 @@ else
 		/etc/init.d/ipsec stop
 		chkconfig ipsec off
 	fi
+
+	if [ $neutronmetering == "yes" ]
+	then
+		aptitude -y install neutron-metering-agent
+	fi
 fi
 
 echo ""
@@ -331,11 +336,20 @@ openstack-config --set /etc/neutron/neutron.conf DEFAULT dhcp_agent_notification
 # openstack-config --set /etc/neutron/neutron.conf service_providers service_provider LOADBALANCER:Haproxy:neutron.services.loadbalancer.drivers.haproxy.plugin_driver.HaproxyOnHostPluginDriver:default
 # Mientras, se deja el anterior basado en "service_plugins"
 
+#
+# neutron.services.metering.metering_plugin.MeteringPlugin
+if [ $neutronmetering == "yes" ]
+then
+	thirdplugin=",neutron.services.metering.metering_plugin.MeteringPlugin"
+else
+	thirdplugin=""
+fi
+
 if [ $vpnaasinstall == "yes" ]
 then
-        openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins "neutron.services.loadbalancer.plugin.LoadBalancerPlugin,neutron.services.firewall.fwaas_plugin.FirewallPlugin,neutron.services.vpn.plugin.VPNDriverPlugin"
+	openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins "neutron.services.loadbalancer.plugin.LoadBalancerPlugin,neutron.services.firewall.fwaas_plugin.FirewallPlugin,neutron.services.vpn.plugin.VPNDriverPlugin$thirdplugin"
 else
-        openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins "neutron.services.loadbalancer.plugin.LoadBalancerPlugin,neutron.services.firewall.fwaas_plugin.FirewallPlugin"
+	openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins "neutron.services.loadbalancer.plugin.LoadBalancerPlugin,neutron.services.firewall.fwaas_plugin.FirewallPlugin$thirdplugin"
 fi
 
 # NUEVO: Firewal As A Service
@@ -358,6 +372,17 @@ then
         openstack-config --set /etc/neutron/vpn_agent.ini DEFAULT external_network_bridge ""
         openstack-config --set /etc/neutron/vpn_agent.ini vpnagent vpn_device_driver "neutron.services.vpn.device_drivers.ipsec.OpenSwanDriver"
         openstack-config --set /etc/neutron/vpn_agent.ini ipsec ipsec_status_check_interval 60
+fi
+
+if [ $neutronmetering == "yes" ]
+then
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT debug False
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT ovs_use_veth True
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT use_namespaces True
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT driver neutron.services.metering.drivers.iptables.iptables_driver.IptablesMeteringDriver
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT interface_driver neutron.agent.linux.interface.OVSInterfaceDriver
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT measure_interval 30
+	openstack-config --set /etc/neutron/metering_agent.ini DEFAULT report_interval 300
 fi
 
 
@@ -505,6 +530,12 @@ then
                 chkconfig neutron-vpn-agent off
         fi
 
+	if [ $neutronmetering == "yes" ]
+	then
+		/etc/init.d/neutron-metering-agent stop
+		chkconfig neutron-metering-agent off
+	fi
+
 	/etc/init.d/neutron-plugin-openvswitch-agent start
 	chkconfig neutron-plugin-openvswitch-agent on
 else
@@ -529,6 +560,12 @@ else
                 /etc/init.d/neutron-vpn-agent start
                 chkconfig neutron-vpn-agent on
         fi
+
+	if [ $neutronmetering == "yes" ]
+	then
+		service neutron-metering-agent start
+		chkconfig neutron-metering-agent on
+	fi
 
 	/etc/init.d/neutron-plugin-openvswitch-agent start
 	chkconfig neutron-plugin-openvswitch-agent on
@@ -591,6 +628,10 @@ else
                 then
                         date > /etc/openstack-control-script-config/neutron-full-installed-vpnaas
                 fi
+		if [ $neutronmetering == "yes" ]
+		then
+			date > /etc/openstack-control-script-config/neutron-full-installed-metering
+		fi
 	fi
 fi
 

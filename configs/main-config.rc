@@ -7,8 +7,8 @@
 # Primera versión (Havana - Centos6): Octubre 17 del 2013
 #
 # Archivo de configuracion principal
-# Para el instalador versión 1.1.0 "Mr. Cat"
-# Noviembre 02, 2013
+# Para el instalador versión 1.1.1 "Mr. Cat"
+# Noviembre 04, 2013
 #
 
 #
@@ -292,7 +292,10 @@ network_create_list="publica"
 # Nuevo para HAVANA: VPNaaS (VPN as a Service)
 # Por defecto, no lo instalamos - coloque "yes" si lo quiere instalar
 vpnaasinstall="no"
-
+#
+# Si se va a instalar el módulo de meetering (solo para esquemas que
+# usen routers L2 de Neutron), colocar la siguiente variable en "yes"
+neutronmetering="no"
 
 
 # Datos de configuracion para nova
@@ -388,7 +391,10 @@ mondbport="27017"
 mondbname="ceilometer"
 # Password del servicio de metering
 metering_secret="P@ssw0rd"
-
+#
+# Si se va a instalar el módulo de alarmas, colocar
+# la siguiente variable en "yes"
+ceilometeralarms="no"
 
 
 # Datos de configuración para heat

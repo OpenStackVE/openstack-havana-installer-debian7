@@ -50,9 +50,15 @@ cinder_svc_start='
 
 if [ -f /etc/openstack-control-script-config/neutron-full-installed ]
 then
+	if [ -f /etc/openstack-control-script-config/neutron-full-installed-metering ]
+	then
+		metering="neutron-metering-agent"
+	else
+		metering=""
+	fi
         if [ -f /etc/openstack-control-script-config/neutron-full-installed-vpnaas ]
         then
-		neutron_svc_start='
+		neutron_svc_start="
                         neutron-server
                         neutron-plugin-openvswitch-agent
                         neutron-l3-agent
@@ -60,16 +66,18 @@ then
                         neutron-metadata-agent
                         neutron-dhcp-agent
                         neutron-vpn-agent
-		'
+			$metering
+		"
 	else
-		neutron_svc_start='
+		neutron_svc_start="
                         neutron-server
                         neutron-plugin-openvswitch-agent
                         neutron-l3-agent
                         neutron-lbaas-agent
                         neutron-metadata-agent
                         neutron-dhcp-agent
-		'
+			$metering
+		"
 	fi
 else
 	neutron_svc_start='
@@ -108,12 +116,23 @@ else
 	'
 fi
 
-ceilometer_svc_start='
+if [ -f /etc/openstack-control-script-config/ceilometer-installed-alarms ]
+then
+	alarm1="ceilometer-alarm-notifier"
+	alarm2="ceilometer-alarm-evaluator"
+else
+	alarm1=""
+	alarm2=""
+fi
+
+ceilometer_svc_start="
 	ceilometer-agent-compute
 	ceilometer-agent-central
 	ceilometer-api
 	ceilometer-collector
-'
+	$alarm1
+	$alarm2
+"
 
 heat_svc_start='
 	heat-api

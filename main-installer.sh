@@ -8,8 +8,8 @@
 # Primera versión (Havana - Debian7): Octubre 30 del 2013
 #
 # Script principal
-# Versión 1.1.0 "Mr. Cat"
-# 02 de Noviembre del 2013
+# Versión 1.1.1 "Mr. Cat"
+# 04 de Noviembre del 2013
 #
 
 PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
@@ -40,7 +40,7 @@ case $1 in
 	echo "INSTALADOR DE OPENSTACK HAVANA PARA DEBIAN 7"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.1.0 \"Mr. Cat\" - Noviembre 02, 2013"
+	echo "Versión 1.1.1 \"Mr. Cat\" - Noviembre 04, 2013"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"
@@ -49,7 +49,7 @@ case $1 in
 	echo "- OS: Debian 7 de 64 bits"
 	echo "- El usuario que ejecuta este script debe ser root"
 	echo "- El servidor debe tener los repositorios siguiente instalados:"
-	echo "  * http://archive.gplhost.com/debian havana main"
+	echo "  * http://havana.pkgs.enovance.com/debian havana main"
 	echo "  * http://archive.gplhost.com/debian havana-backports main"
 	echo "- Las siguientes ramas de los repositorios oficiales de debian 7 deben estar habilitadas"
 	echo "  * main contrib non-free (repo principal)"

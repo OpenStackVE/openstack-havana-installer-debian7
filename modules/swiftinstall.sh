@@ -255,6 +255,45 @@ sync
 iptables -A INPUT -p tcp -m multiport --dports 8080 -j ACCEPT
 /etc/init.d/iptables-persistent save
 
+swift_svc_start='
+	swift-account
+	swift-account-auditor
+	swift-account-reaper
+	swift-account-replicator
+	swift-container
+	swift-container-auditor
+	swift-container-replicator
+	swift-container-updater
+	swift-object
+	swift-object-auditor
+	swift-object-replicator
+	swift-object-updater
+	swift-proxy
+'
+swift_svc_stop=`echo $swift_svc_start|tac -s' '`
+
+echo ""
+echo "Reiniciando servicios de Swift"
+echo ""
+
+for i in $swift_svc_stop
+do
+	service $i stop
+done
+
+sync
+sleep 2
+sync
+
+for i in $swift_svc_start
+do
+	service $i start
+done
+
+echo ""
+echo "Listo"
+echo ""
+
 testswift=`dpkg -l swift-proxy 2>/dev/null|tail -n 1|grep -ci ^ii`
 if [ $testswift == "0" ]
 then
@@ -272,9 +311,4 @@ fi
 echo ""
 echo "Instalación básica de SWIFT terminada"
 echo ""
-
-
-
-
-
 

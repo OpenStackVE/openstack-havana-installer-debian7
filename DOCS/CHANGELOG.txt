@@ -1,3 +1,9 @@
+1.1.2 - 06-Noviembre-2013
+- Mejoras en módulo de instalación de Swift.
+- Mejoras en módulo de instalación de glance en modo
+  de uso de backend "swift" como almacenamiento de
+  imágenes.
+
 1.1.1 - 04-Noviembre-2013
 - Se agrega como opción la instalación del bandwidth
   monitoring en Neutron (metering-agent).

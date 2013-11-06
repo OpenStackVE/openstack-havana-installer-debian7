@@ -271,8 +271,58 @@ then
                 openstack-config --set /etc/glance/glance-cache.conf DEFAULT swift_store_create_container_on_put True
                 openstack-config --set /etc/glance/glance-cache.conf DEFAULT swift_store_auth_version 2
                 openstack-config --set /etc/glance/glance-cache.conf DEFAULT swift_store_container glance
-                service openstack-glance-registry restart
-                service openstack-glance-api restart
+                echo ""
+                echo "Bajando servicios de Glance"
+                echo ""
+
+                service glance-registry stop
+                service glance-api stop
+
+                swift_svc_start='
+                        swift-account
+                        swift-account-auditor
+                        swift-account-reaper
+                        swift-account-replicator
+                        swift-container
+                        swift-container-auditor
+                        swift-container-replicator
+                        swift-container-updater
+                        swift-object
+                        swift-object-auditor
+                        swift-object-replicator
+                        swift-object-updater
+                        swift-proxy
+                '
+                swift_svc_stop=`echo $swift_svc_start|tac -s' '`
+
+                echo ""
+                echo "Reiniciando servicios de Swift"
+                echo ""
+
+                for i in $swift_svc_stop
+                do
+                        service $i stop
+                done
+
+                sync
+                sleep 2
+                sync
+
+                for i in $swift_svc_start
+                do
+                        service $i start
+                done
+
+                sync
+                sleep 5
+                sync
+
+                echo ""
+                echo "Subiendo servicios de Glance con Swift como Backend"
+                echo ""
+
+                service glance-api start
+                service glance-registry start
         fi
 fi
 

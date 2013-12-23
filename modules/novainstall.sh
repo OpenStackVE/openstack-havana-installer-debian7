@@ -348,6 +348,10 @@ openstack-config --set /etc/nova/nova.conf DEFAULT cpu_allocation_ratio $cpu_all
 openstack-config --set /etc/nova/nova.conf DEFAULT connection_type libvirt
 openstack-config --set /etc/nova/nova.conf DEFAULT scheduler_default_filters "RetryFilter,AvailabilityZoneFilter,RamFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,CoreFilter"
 openstack-config --set /etc/nova/nova.conf DEFAULT force_config_drive true
+openstack-config --set /etc/nova/nova.conf DEFAULT config_drive_format iso9660
+openstack-config --set /etc/nova/nova.conf DEFAULT config_drive_cdrom true
+openstack-config --set /etc/nova/nova.conf DEFAULT config_drive_inject_password True
+openstack-config --set /etc/nova/nova.conf DEFAULT mkisofs_cmd genisoimage
 openstack-config --set /etc/nova/nova.conf DEFAULT dhcp_domain $dhcp_domain
 
 # Mas opciones nuevas para Nova

@@ -8,8 +8,8 @@
 # Primera versión (Havana - Debian7): Octubre 30 del 2013
 #
 # Script principal
-# Versión 1.1.2 "Mr. Cat"
-# 06 de Noviembre del 2013
+# Versión 1.1.3 "Mr. Cat"
+# 23 de Diciembre del 2013
 #
 
 PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin

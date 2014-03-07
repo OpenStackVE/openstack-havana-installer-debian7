@@ -1,3 +1,10 @@
+1.1.5 - 07-Marzo-2014
+- Se agregan "Goodies" extras para lectura de metadata
+  y monitoreo vía ZABBIX.
+- Se cambian las notas (DOCS/NOTAS.txt) para usar indicar
+  que se use solamente los repositorios de gplhost y no
+  los de enovance.
+
 1.1.4 - 23-Noviembre-2013
 - Correccion menor en script principal de instalación.
 

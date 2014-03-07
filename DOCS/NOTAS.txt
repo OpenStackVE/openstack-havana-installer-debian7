@@ -19,58 +19,23 @@ Asegurese de tener los repositorios de debian y de openstack para debian bien co
 
 a.- Agregue las siguientes líneas a /etc/apt/sources.list:
 
-deb http://havana.pkgs.enovance.com/debian havana main
+deb http://archive.gplhost.com/debian havana main
 deb http://archive.gplhost.com/debian havana-backports main
 
-b.- Importe las llaves de ambos repositorios
+b.- Importe la llave del repositorio
 
 cd /tmp
 wget http://archive.gplhost.com/debian/repository_key.asc
 apt-key add repository_key.asc
-wget http://havana.pkgs.enovance.com/debian/dists/havana/pubkey.gpg
-apt-key add pubkey.gpg
 
 cd /
 
 apt-get update
 
-NOTA IMPORTANTE !!
-
-En caso que el url "http://havana.pkgs.enovance.com/debian" no esté disponible, el mismo puede ser sustituido por:
-
-http://archive.gplhost.com/debian
-
-En tal caso, las líneas específicas para OpenStack quedarían así:
-
-deb http://archive.gplhost.com/debian havana main
-deb http://archive.gplhost.com/debian havana-backports main
-
-Sin embargo, les advertimos: Los paquetes en "havana.pkgs.enovance.com" tienen a estar mas actualizados que los de gplhost !.
-
 
 Debe tener las ramas "main contrib non-free" activas en los repositorios principales y de updates.
 
-Ejemplo de un sources.list bien configurado para debian 7 (usando enovance y gplhost)
-
-==============================================================================
-==============================================================================
-deb http://ftp.us.debian.org/debian/ wheezy main contrib non-free
-deb-src http://ftp.us.debian.org/debian/ wheezy main contrib non-free
-
-deb http://security.debian.org/ wheezy/updates main contrib non-free
-deb-src http://security.debian.org/ wheezy/updates main contrib non-free
-
-# wheezy-updates, previously known as 'volatile'
-deb http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
-deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
-
-deb http://havana.pkgs.enovance.com/debian havana main
-deb http://archive.gplhost.com/debian havana-backports main
-==============================================================================
-==============================================================================
-
-
-Otro ejemplo sólo usando gplhost para "havana main" y "havana-backports main":
+Ejemplo de un sources.list bien configurado para debian 7
 
 
 ==============================================================================
@@ -85,6 +50,7 @@ deb-src http://security.debian.org/ wheezy/updates main contrib non-free
 deb http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
 deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
 
+# Repositorios para OpenStack
 deb http://archive.gplhost.com/debian havana main
 deb http://archive.gplhost.com/debian havana-backports main
 ==============================================================================
